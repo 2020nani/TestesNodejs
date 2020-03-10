@@ -1,10 +1,10 @@
 import request from 'supertest';
 import bcrypt from 'bcryptjs';
 import app from '../../src/app';
-
+//importando usuario
 import factory from '../factories';
 import truncate from '../util/truncate';
-
+//usando truncate para limpar dados apos teste
 describe('User', () => {
   beforeEach(async () => {
     await truncate();
@@ -21,8 +21,9 @@ describe('User', () => {
   });
 
   it('should be able to register', async () => {
+    //factory retorna atributos usuario e nao o cria no banco
     const user = await factory.attrs('User');
-
+//chmando usuario
     const response = await request(app)
       .post('/users')
       .send(user);
